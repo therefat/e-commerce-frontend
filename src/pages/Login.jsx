@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../layout/Layout'
 import axios from 'axios'
+import { UserContext } from '../contex/UserContext'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Login() {
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState(0)
   const [user,setUser] = useState([])
-  const [isloggedIn,setLoggedIn] = useState()
+  const {UserLogged,setUserLogged} = useContext(UserContext)
+  const [errors,setErrors] = useState([])
+  const history = useNavigate()
+  // const hiss = 
   const submitForm = (e) => {
     e.preventDefault();
     axios.post("http://localhost:8080/users/login",{
@@ -15,13 +20,27 @@ function Login() {
     })
     .then(response => {
      
-      setLoggedIn(response.data) 
+      setUserLogged(response.data) 
+      history('/')
+      // localStorage.setItem('user',response.data)
     })
-    .catch(error => {
-      console.log(error)
+    // .catch(error => {
+    // setErrors(error)
+    //   console.log(error.message)
+    // })
+    .catch(err => {
+      console.log(err)
+      setErrors(err)
     })
+    
   }
-  
+  // useEffect(() => {
+  //   const loggedInUser = localStorage.getItem("user")
+  //   if(loggedInUser){
+  //     const foundUser = JSON.stringify(loggedInUser)
+  //     setUserLogged(foundUser)
+  //   }
+  // },[])
   return (
     <>
         <Layout>
@@ -39,8 +58,11 @@ function Login() {
                  </div>
                  <button type="submit"  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" >Submit</button>
                 </form>
+               
+                <Link to={'/signup'}>You Have A No Accoutn Sign Up </Link>
             </div>
-              {isloggedIn ? <h1>Login Succeful</h1> : <h1>Login</h1>}
+
+              {UserLogged ? <h1>Login Succeful</h1> : <h1>Login</h1>}
             </div>
         </Layout>
     </>
