@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 function Login() {
   const [email,setEmail] = useState('')
-  const [password,setPassword] = useState(0)
+  const [password,setPassword] = useState()
   const [user,setUser] = useState([])
   const {UserLogged,setUserLogged} = useContext(UserContext)
   const [errors,setErrors] = useState([])
@@ -16,18 +16,19 @@ function Login() {
     e.preventDefault();
     axios.post("http://localhost:8080/users/login",{
       email : email,
-      password: password
+      password: password,
+      withCredentials: true
     })
     .then(response => {
      
       setUserLogged(response.data) 
       history('/')
-      // localStorage.setItem('user',response.data)
+      localStorage.setItem('user',response.data)
     })
-    // .catch(error => {
-    // setErrors(error)
-    //   console.log(error.message)
-    // })
+    .catch(error => {
+    setErrors(error)
+      console.log(error.message)
+    })
     .catch(err => {
       console.log(err)
       setErrors(err)

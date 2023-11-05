@@ -6,7 +6,7 @@ import axios from 'axios'
 function SignUp() {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
-    const [password,setPassword] = useState(0)
+    const [password,setPassword] = useState()
     const [newUsers,setUsers] = useState()
     const hisotoyr = useNavigate()
 
