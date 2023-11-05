@@ -35,13 +35,13 @@ function Login() {
     })
     
   }
-  // useEffect(() => {
-  //   const loggedInUser = localStorage.getItem("user")
-  //   if(loggedInUser){
-  //     const foundUser = JSON.stringify(loggedInUser)
-  //     setUserLogged(foundUser)
-  //   }
-  // },[])
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user")
+    if(loggedInUser){
+      const foundUser = JSON.stringify(loggedInUser)
+      setUserLogged(foundUser)
+    }
+  },[])
   return (
     <>
         <Layout>

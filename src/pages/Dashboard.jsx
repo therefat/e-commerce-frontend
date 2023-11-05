@@ -10,7 +10,7 @@ function Dashboard({children}) {
             <div className="sidebar basis-1/6">
                 <DashSideBar></DashSideBar>
             </div>
-            <div className="content basis-4/6">
+            <div className="content m-3 basis-4/6">
             {children}
             </div>
         </div>
