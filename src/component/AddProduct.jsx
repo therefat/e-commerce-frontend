@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Dashboard from '../pages/Dashboard'
 import axios from 'axios'
 
@@ -6,32 +6,39 @@ function AddProduct() {
     const [name,setName] = useState('')
     const [description,setDescription] = useState('')
     const [category,setCategory] = useState('')
-    const [price,setPrice] = useState()
+    const [price,setPrice] = useState('')
+
+    
     const submitProduct = (e) => {
         e.preventDefault();
+        const token = localStorage.getItem('jwtToken')
+        
         axios.post('http://localhost:8080/items',{
-            name : name,
-            description: description,
-            category: category,
-            price: price,
-            
-
-        },)
+                name : name,
+                description: description,
+                category: category,
+                price: price,
+               
+    
+            },{
+                headers : {
+                    Authorization: token
+                }
+            }
+        )
+        
         .then(response => {
+            
             console.log(response)
         })
         .catch(err => {
             console.log(err)
         })
         console.log('test')
-        const proo = {
-            name : name,
-            description: description,
-            category: category,
-            price: price
-        }
-        console.log(proo)
+       
+        
     }
+   
   return (
     <Dashboard>
         <div className="container">

@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 function Login() {
   const [email,setEmail] = useState('')
-  const [password,setPassword] = useState()
+  const [password,setPassword] = useState('')
   const [user,setUser] = useState([])
   const {UserLogged,setUserLogged} = useContext(UserContext)
   const [errors,setErrors] = useState([])
@@ -22,8 +22,10 @@ function Login() {
     .then(response => {
      
       setUserLogged(response.data) 
+      console.log(response)
       history('/')
-      localStorage.setItem('user',response.data)
+      localStorage.setItem('jwtToken',response.data.token)
+      axios.defaults.headers.common= 'Bearer' + response.data.token
     })
     .catch(error => {
     setErrors(error)
@@ -35,13 +37,13 @@ function Login() {
     })
     
   }
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("user")
-    if(loggedInUser){
-      const foundUser = JSON.stringify(loggedInUser)
-      setUserLogged(foundUser)
-    }
-  },[])
+  // useEffect(() => {
+  //   const loggedInUser = localStorage.getItem("user")
+  //   if(loggedInUser){
+  //     const foundUser = JSON.stringify(loggedInUser)
+  //     setUserLogged(foundUser)
+  //   }
+  // },[])
   return (
     <>
         <Layout>
