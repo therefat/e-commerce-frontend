@@ -12,9 +12,18 @@ function Navbar() {
       setShowBar(!showBar)
     }// } ,{}, { withCredentials: true }
     const handleLogout = () => {
-      axios.post('http://localhost:8080/users/logout')
+      const token = localStorage.getItem('jwtToken')
+      axios.post('http://localhost:8080/users/logout',{
+      
+        
+      },{
+        headers: {
+          Authorization: token
+        }
+      })
       .then((response) => {
-        console.log(response)
+        setUserLogged(response.data.LoggedIn)
+       
         
       })
       .catch((error) => {

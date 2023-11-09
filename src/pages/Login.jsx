@@ -21,8 +21,8 @@ function Login() {
     })
     .then(response => {
      
-      setUserLogged(response.data) 
-      console.log(response)
+      setUserLogged(response.data.LoggedIn) 
+      
       history('/')
       localStorage.setItem('jwtToken',response.data.token)
       axios.defaults.headers.common= 'Bearer' + response.data.token
