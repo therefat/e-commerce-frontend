@@ -110,7 +110,22 @@ function AddProduct() {
     setShowModal(false)
   };
 
-  
+  const handleDelet = (item) => {
+    const token = localStorage.getItem("jwtToken");
+    axios.delete(`http://localhost:8080/items/${item._id}`, {
+      headers: {
+        Authorization: token,
+        
+      },
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  }
 
 // () => setShowModal(true)
   return (
@@ -279,7 +294,7 @@ function AddProduct() {
                           </button>
                         </td>
                         <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                          <button
+                          <button onClick={() => handleDelet(item)}
                             
                             class="text-red-600 dark:text-red-500 hover:underline"
                           >
