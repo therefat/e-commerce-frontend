@@ -1,0 +1,26 @@
+<form onSubmit={handleSubmit}>
+        {/* Your form fields go here, for example: */}
+        <label>
+          Field 1:
+          <input type="text" name="field1" value={formData.field1} onChange={handleInputChange} />
+        </label>
+        <label>
+          Field 2:
+          <input type="text" name="field2" value={formData.field2} onChange={handleInputChange} />
+        </label>
+        <button className="bg-gray-900 p-3  text-white rounded">
+            Submit
+          </button>
+        
+      </form>
+      <button type="submit" >
+        Add
+      </button>
+      <button type="submit" >
+        Edit
+      </button>
+    </div>
+  );
+};
+
+export default YourComponent;
