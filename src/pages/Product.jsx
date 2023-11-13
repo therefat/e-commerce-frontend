@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../layout/Layout'
 import axios from 'axios'
 import ProductDetail from './ProductDetail'
+import '../assets/css/Product/productDetail.css'
 
 function Product() {
   const  [products,setProduct] = useState([])

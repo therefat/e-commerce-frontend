@@ -1,0 +1,21 @@
+.productCard {
+    max-width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding-bottom: 22px;
+}
+.product-detail {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.btns {
+    display: flex;
+    justify-content: space-around;
+}
+.btns button {
+    background-color: black;
+    color: white;
+    padding: 6px;
+    /* padding: 13px; */
+    border-radius: 10px;
+}
