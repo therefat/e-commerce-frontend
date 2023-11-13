@@ -5,7 +5,7 @@ import { UserContext } from '../contex/UserContext'
 import axios from 'axios'
 
 function Navbar() {
-  const {UserLogged,setUserLogged} = useContext(UserContext)
+  const {UserLogged,setUserLogged,carts} = useContext(UserContext)
     const [showBar,setShowBar] = useState(false)
     const histoyy = useNavigate()
     const handaleShowBar = () => {
@@ -68,7 +68,10 @@ function Navbar() {
           UserLogged ?  dropdownss
           : <Link to={'/login'} className={window.location.pathname === "/contact" ? "activeLink" : ""}>Login</Link>
         }
-            <a className="rounded-2xl  flex justify-center items-center w-8 h-8 bg-white text-center text-black  ms-3" href=""><i className="bi bi-bag"></i></a>
+            <div className="carts">
+            <a className="rounded-2xl  flex justify-center items-center w-8 h-8 bg-white text-center text-black  ms-3" href="#"><i className="bi bi-bag"></i></a>
+            <span className='carttcount'>{carts}</span>
+            </div>
           </div>
       </nav>
       </div>

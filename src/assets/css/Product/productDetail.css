@@ -8,6 +8,10 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
 }
+.product-detail img {
+    width: 300px;
+    height: 250px;
+}
 .btns {
     display: flex;
     justify-content: space-around;
@@ -18,4 +22,12 @@
     padding: 6px;
     /* padding: 13px; */
     border-radius: 10px;
+}
+.carts {
+    position: relative;
+} 
+span.carttcount {
+    position: absolute;
+    top: -12px;
+    left: 39px;
 }
