@@ -18,7 +18,7 @@ import ProductInfo from './pages/ProductInfo'
 function App() {
   const [count, setCount] = useState(0)
   const [UserLogged,setUserLogged] = useState()
-  const [carts,setCarts] = useState(0)
+  const [carts,setCarts] = useState([])
   
 
   return (

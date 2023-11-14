@@ -6,6 +6,7 @@ import axios from 'axios'
 
 function Navbar() {
   const {UserLogged,setUserLogged,carts} = useContext(UserContext)
+  
     const [showBar,setShowBar] = useState(false)
     const histoyy = useNavigate()
     const handaleShowBar = () => {
@@ -70,8 +71,14 @@ function Navbar() {
         }
             <div className="carts">
             <a className="rounded-2xl  flex justify-center items-center w-8 h-8 bg-white text-center text-black  ms-3" href="#"><i className="bi bi-bag"></i></a>
-            <span className='carttcount'>{carts}</span>
+            <span className='carttcount'> {carts ? carts?.data.items.length : 0} </span>
+            <div className="testt">
+              <h1>{carts ? carts.data.items.length : 0} items</h1>
+              <h1>subtotal: {carts ? carts.data.bill : 0} </h1>
+              <button>view Cart</button>
             </div>
+            </div>
+            
           </div>
       </nav>
       </div>

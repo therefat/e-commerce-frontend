@@ -8,17 +8,19 @@ import axios from 'axios'
 function ProductDetail({item}) {
   const {carts,setCarts} = useContext(UserContext)
     const addToCarts = () => {
-      setCarts(carts + 1)
+      // setCarts(carts + 1)
       const token = localStorage.getItem("jwtToken");
       axios.post('http://localhost:8080/cart',{
         itemId : item._id,
-        quantity: carts
+        quantity: 1
       },{headers: {
         Authorization: token,
         
       },})
       .then((response) => {
         console.log(response)
+      let datas = response.data.items.length
+       setCarts(response)
       })
       .catch((err) =>{
         console.log(err)
