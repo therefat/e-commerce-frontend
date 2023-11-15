@@ -14,6 +14,7 @@ import Profile from './pages/Profile'
 import Products from './component/Products'
 import AddProduct from './component/AddProduct'
 import ProductInfo from './pages/ProductInfo'
+import { CartProvider } from 'react-use-cart'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
     <UserContext.Provider value={{UserLogged,setUserLogged,carts,setCarts}}>
+      <CartProvider>
     <Routes>
     
     
@@ -46,6 +48,7 @@ function App() {
    
      
      </Routes>
+     </CartProvider>
     </UserContext.Provider>
     </>
   )

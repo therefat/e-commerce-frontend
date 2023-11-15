@@ -4,8 +4,11 @@ import Layout from '../layout/Layout'
 import '../assets/css/Product/productDetail.css'
 import { UserContext } from '../contex/UserContext'
 import axios from 'axios'
+import { useCart } from 'react-use-cart'
 
 function ProductDetail({item}) {
+  console.log(item)
+  const {addItem} = useCart()
   const {carts,setCarts} = useContext(UserContext)
     const addToCarts = () => {
       // setCarts(carts + 1)
@@ -34,7 +37,10 @@ function ProductDetail({item}) {
         <h1>{item.name}</h1>
         <h1>Price {item.price}</h1>
         <div className='btns'>
-          <button onClick={addToCarts}>Add To Cart</button>
+          <button onClick={() => {
+            addToCarts()
+            addItem(item)
+          }}>Add To Cart</button>
           <button>Buy Now</button>
         </div>
     </div>

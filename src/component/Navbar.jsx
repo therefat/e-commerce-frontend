@@ -3,10 +3,22 @@ import { Link, useNavigate } from 'react-router-dom'
 import '../css/navbar.css'
 import { UserContext } from '../contex/UserContext'
 import axios from 'axios'
+import { useCart } from 'react-use-cart'
 
 function Navbar() {
+  const {
+    isEmpty,
+    totalUniqueItems,
+    items,
+    updateItemQuantity,
+    removeItem,
+  } = useCart();
   const {UserLogged,setUserLogged,carts} = useContext(UserContext)
-  
+  // let testttt = carts ? carts?.data.items.length : 0
+  // console.log(testttt)
+  if(carts){
+  console.log(carts?.data?.items.length)}
+ 
     const [showBar,setShowBar] = useState(false)
     const histoyy = useNavigate()
     const handaleShowBar = () => {
@@ -71,10 +83,11 @@ function Navbar() {
         }
             <div className="carts">
             <a className="rounded-2xl  flex justify-center items-center w-8 h-8 bg-white text-center text-black  ms-3" href="#"><i className="bi bi-bag"></i></a>
-            <span className='carttcount'> {carts ? carts?.data.items.length : 0} </span>
+            <span className='carttcount'> {totalUniqueItems}  </span>
             <div className="testt">
-              <h1>{carts ? carts.data.items.length : 0} items</h1>
-              <h1>subtotal: {carts ? carts.data.bill : 0} </h1>
+              {/* <h1>{carts ? carts.data.items.length : 0} items</h1> {carts?.data?.bill} {carts ? carts?.data?.items.length : 0} */}
+              <h1>subtotal:  </h1> 
+              <h1>test</h1>
               <button>view Cart</button>
             </div>
             </div>
