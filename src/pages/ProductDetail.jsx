@@ -22,9 +22,9 @@ function ProductDetail({item}) {
         
       },})
       .then((response) => {
-        console.log(response)
-      let datas = response.data.items.length
-       setCarts(response)
+      //   console.log(response)
+      // let datas = response.data.items.length
+      //  setCarts(response)
       })
       .catch((err) =>{
         console.log(err)
@@ -55,7 +55,7 @@ function ProductDetail({item}) {
               updatedAt : item.updatedAt
 
             }
-            console.log(items.id)
+            
             addToCarts(item,items)
             
           }}>Add To Cart</button>

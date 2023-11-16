@@ -17,7 +17,7 @@ function Product() {
       console.log(err)
     })
   },[])
-  console.log(products)
+  // console.log(products)
   return (
     <Layout>
         <div className='container   m-auto'>

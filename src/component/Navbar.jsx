@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../css/navbar.css'
 import { UserContext } from '../contex/UserContext'
 import axios from 'axios'
 import { useCart } from 'react-use-cart'
+import { data } from 'autoprefixer'
 
 function Navbar() {
   const {
@@ -14,18 +15,43 @@ function Navbar() {
     cartTotal,
     removeItem,
   } = useCart();
-  const {UserLogged,setUserLogged,carts} = useContext(UserContext)
+  
+  const {UserLogged,setUserLogged,carts,setCarts} = useContext(UserContext)
   // let testttt = carts ? carts?.data.items.length : 0
   // console.log(testttt)
   // if(carts){
   // console.log(carts?.data?.items.length)}
  
+  const token = localStorage.getItem("jwtToken");
     const [showBar,setShowBar] = useState(false)
     const histoyy = useNavigate()
     const handaleShowBar = () => {
       setShowBar(!showBar)
-    }// } ,{}, { withCredentials: true }
-    const handleLogout = () => {
+    }
+
+
+       useEffect(() => {
+      axios.get('http://localhost:8080/cart/',{
+            headers: {
+              Authorization: token,
+              
+            },
+          })
+      .then((response) => {
+       
+        setCarts(response.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },[]) 
+    
+    if(UserLogged){
+      
+     
+     }
+     const hii = 33;
+   const handleLogout = () => {
       const token = localStorage.getItem('jwtToken')
       axios.post('http://localhost:8080/users/logout',{
       
@@ -36,6 +62,8 @@ function Navbar() {
         }
       })
       .then((response) => {
+        console.log(response.data.LoggedIn)
+        histoyy('/')
         setUserLogged(response.data.LoggedIn)
        
         
@@ -44,7 +72,8 @@ function Navbar() {
         console.error('An error occurred during logout:', error);
       });
       
-    }
+    }    
+  
     const dropdownss = <div className="dropdown">
     {/* <button className="dropbtn">Dropdown</button> */}
     <Link   className="rounded-2xl flex justify-center  items-center text-black text-center  w-8 h-8 bg-white  ms-3" ><i className="bi bi-person"></i></Link>
@@ -84,10 +113,10 @@ function Navbar() {
         }
             <div className="carts">
             <a className="rounded-2xl  flex justify-center items-center w-8 h-8 bg-white text-center text-black  ms-3" href="#"><i className="bi bi-bag"></i></a>
-            <span className='carttcount'> {totalUniqueItems}  </span>
+            <span className='carttcount'> {UserLogged ? ccarts.items.length : totalUniqueItems}  </span>
             <div className="testt">
               {/* <h1>{carts ? carts.data.items.length : 0} items</h1> {carts?.data?.bill} {carts ? carts?.data?.items.length : 0} */}
-              <h1>subtotal: {cartTotal}  </h1> 
+              <h1>subtotal: {UserLogged ? carts.bill : cartTotal}  </h1> 
               <h1>test</h1>
               <button>view Cart</button>
             </div>
