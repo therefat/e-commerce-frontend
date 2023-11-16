@@ -11,13 +11,14 @@ function Navbar() {
     totalUniqueItems,
     items,
     updateItemQuantity,
+    cartTotal,
     removeItem,
   } = useCart();
   const {UserLogged,setUserLogged,carts} = useContext(UserContext)
   // let testttt = carts ? carts?.data.items.length : 0
   // console.log(testttt)
-  if(carts){
-  console.log(carts?.data?.items.length)}
+  // if(carts){
+  // console.log(carts?.data?.items.length)}
  
     const [showBar,setShowBar] = useState(false)
     const histoyy = useNavigate()
@@ -86,7 +87,7 @@ function Navbar() {
             <span className='carttcount'> {totalUniqueItems}  </span>
             <div className="testt">
               {/* <h1>{carts ? carts.data.items.length : 0} items</h1> {carts?.data?.bill} {carts ? carts?.data?.items.length : 0} */}
-              <h1>subtotal:  </h1> 
+              <h1>subtotal: {cartTotal}  </h1> 
               <h1>test</h1>
               <button>view Cart</button>
             </div>
