@@ -118,7 +118,7 @@ function Navbar() {
               {/* <h1>{carts ? carts.data.items.length : 0} items</h1> {carts?.data?.bill} {carts ? carts?.data?.items.length : 0} */}
               <h1>subtotal: {UserLogged ? carts.bill : cartTotal}  </h1> 
               <h1>test</h1>
-              <button>view Cart</button>
+              <Link to={'/cart'}>view Cart</Link>
             </div>
             </div>
             

@@ -15,6 +15,7 @@ import Products from './component/Products'
 import AddProduct from './component/AddProduct'
 import ProductInfo from './pages/ProductInfo'
 import { CartProvider } from 'react-use-cart'
+import Cart from './pages/Cart'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -41,6 +42,7 @@ function App() {
     </Route>
     <Route path='/:name' element={<ProductInfo/>}></Route>
     <Route path='/signup' element={<SignUp></SignUp>}></Route>
+    <Route path='/cart' element={<Cart/>}></Route>
     {/* <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route> */}
       
     
