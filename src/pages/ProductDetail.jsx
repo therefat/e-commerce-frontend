@@ -6,9 +6,11 @@ import { UserContext } from '../contex/UserContext'
 import axios from 'axios'
 import { useCart } from 'react-use-cart'
 
+
 function ProductDetail({item}) {
   // console.log(item)
   const {addItem} = useCart()
+  
   const {carts,setCarts,UserLogged} = useContext(UserContext)
     const addToCarts = (item,items) => {
       // setCarts(carts + 1)
@@ -38,7 +40,7 @@ function ProductDetail({item}) {
     
       
         <div className='productCard'>
-        <img src={item.image} alt="" />
+        <Link to={'/' + item.name}><img src={item.image} alt="" /></Link>
         <h1>{item.name}</h1>
         <h1>Price {item.price}</h1>
         <div className='btns'>
@@ -59,7 +61,7 @@ function ProductDetail({item}) {
             addToCarts(item,items)
             
           }}>Add To Cart</button>
-          <button>Buy Now</button>
+          <Link to={'/' + item.name}><button>Buy Now</button></Link>
         </div>
     </div>
     
