@@ -1,6 +1,8 @@
 import React from 'react'
 import Layout from '../layout/Layout'
 import { useCart } from 'react-use-cart';
+import {toast} from 'react-toastify'
+import Toaster from '../component/common/Toastar';
 
 function Cart() {
   const {
@@ -102,7 +104,7 @@ function Cart() {
                         </td>
                         
                         <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                        <button className="bg-red-500 text-black p-2" onClick={()=>removeItem(item.id)}>
+                        <button className="bg-red-500 text-black p-2" onClick={()=>{removeItem(item.id); Toaster("Product removed from cart", 'error')}}>
                                 Delete
                             </button>
                         </td>

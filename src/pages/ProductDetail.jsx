@@ -5,6 +5,8 @@ import '../assets/css/Product/productDetail.css'
 import { UserContext } from '../contex/UserContext'
 import axios from 'axios'
 import { useCart } from 'react-use-cart'
+import { toast } from "react-toastify";
+import Toaster from '../component/common/Toastar'
 
 
 function ProductDetail({item}) {
@@ -59,6 +61,7 @@ function ProductDetail({item}) {
             }
             
             addToCarts(item,items)
+            Toaster('Product added to cart', 'success')
             
           }}>Add To Cart</button>
           <Link to={'/' + item.name}><button>Buy Now</button></Link>

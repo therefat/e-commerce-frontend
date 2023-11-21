@@ -14,7 +14,7 @@ function Products() {
       console.log(err)
     })
   },[])
-  console.log(products)
+  
   return (
     <Dashboard>
         <h1>Product List</h1>

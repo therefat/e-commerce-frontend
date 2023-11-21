@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Dashboard from "../pages/Dashboard";
 import axios from "axios";
 import ProductList from "./ProductList";
+import {toast} from 'react-toastify'
+import Toaster from "./common/Toastar";
 
 function AddProduct() {
   const [editingItem, setEditingItem] = useState(null);
@@ -294,7 +296,7 @@ function AddProduct() {
                           </button>
                         </td>
                         <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                          <button onClick={() => handleDelet(item)}
+                          <button onClick={() => {handleDelet(item),Toaster("Product Deleted", 'error')}}
                             
                             class="text-red-600 dark:text-red-500 hover:underline"
                           >

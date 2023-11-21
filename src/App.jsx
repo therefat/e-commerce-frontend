@@ -16,6 +16,8 @@ import AddProduct from './component/AddProduct'
 import ProductInfo from './pages/ProductInfo'
 import { CartProvider } from 'react-use-cart'
 import Cart from './pages/Cart'
+import { ToastContainer } from 'react-toastify'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,6 +27,7 @@ function App() {
 
   return (
     <>
+    <ToastContainer/>
     <UserContext.Provider value={{UserLogged,setUserLogged,carts,setCarts}}>
       <CartProvider>
     <Routes>
@@ -52,6 +55,7 @@ function App() {
      </Routes>
      </CartProvider>
     </UserContext.Provider>
+    
     </>
   )
 }
