@@ -69,6 +69,7 @@ function Cart() {
               <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                 {items &&
                   items.map((item, index) => {
+                    console.log(item)
                     return (
                       <tr
                         key={index}
@@ -104,7 +105,7 @@ function Cart() {
                         </td>
                         
                         <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                        <button className="bg-red-500 text-black p-2" onClick={()=>{removeItem(item.id); Toaster("Product removed from cart", 'error')}}>
+                        <button className="bg-red-500 text-black p-2" onClick={()=>{removeItem(item.id); }}>
                                 Delete
                             </button>
                         </td>

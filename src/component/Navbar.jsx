@@ -10,6 +10,7 @@ function Navbar() {
   const {
     isEmpty,
     totalUniqueItems,
+   
     items,
     updateItemQuantity,
     cartTotal,
@@ -45,9 +46,9 @@ function Navbar() {
         console.log(err)
       })
     },[]) 
-    
+    // console.log(carts.items)
     if(UserLogged){
-      
+      // setItems(carts?.items)
      
      }
      const hii = 33;
@@ -113,7 +114,7 @@ function Navbar() {
         }
             <div className="carts">
             <a className="rounded-2xl  flex justify-center items-center w-8 h-8 bg-white text-center text-black  ms-3" href="#"><i className="bi bi-bag"></i></a>
-            <span className='carttcount'> {UserLogged ? carts.items.length : totalUniqueItems}  </span>
+            <span className='carttcount'> {UserLogged ? carts?.items?.length : totalUniqueItems}  </span>
             <div className="testt">
               {/* <h1>{carts ? carts.data.items.length : 0} items</h1> {carts?.data?.bill} {carts ? carts?.data?.items.length : 0} */}
               <h1>subtotal: {UserLogged ? carts.bill : cartTotal}  </h1> 

@@ -28,6 +28,7 @@ function Login() {
       axios.defaults.headers.common= 'Bearer' + response.data.token
     })
     .catch(error => {
+      console.log(error)
     setErrors(error)
       console.log(error.message)
     })
