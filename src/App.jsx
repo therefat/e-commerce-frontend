@@ -17,6 +17,8 @@ import ProductInfo from './pages/ProductInfo'
 import { CartProvider } from 'react-use-cart'
 import Cart from './pages/Cart'
 import { ToastContainer } from 'react-toastify'
+import Navbar from './component/Navbar'
+import CheckOut from './pages/CheckOut'
 
 
 function App() {
@@ -42,10 +44,12 @@ function App() {
       <Route path='profile' element={<Profile/>}></Route>
       <Route path='products' element={<Products></Products>}></Route>
       <Route path='addproduct' element={<AddProduct></AddProduct>}></Route>
+     
     </Route>
     <Route path='/:name' element={<ProductInfo/>}></Route>
     <Route path='/signup' element={<SignUp></SignUp>}></Route>
     <Route path='/cart' element={<Cart/>}></Route>
+    <Route path='/checkout' element={<CheckOut></CheckOut>}></Route>
     {/* <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route> */}
       
     
