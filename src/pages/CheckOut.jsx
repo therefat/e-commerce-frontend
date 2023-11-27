@@ -2,22 +2,24 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../layout/Layout'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useCart } from 'react-use-cart';
 
 function CheckOut() {
   const {name} = useParams()
-  const [productInfo, setProductInfo] = useState([]);
+  const {items, cartTotal} = useCart();
+  // const [productInfo, setProductInfo] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/items/" + name)
-      .then((response) => {
-        // console.log(response)
-        setProductInfo(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8080/items/" + name)
+  //     .then((response) => {
+  //       // console.log(response)
+  //       setProductInfo(response.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
   return (
     <Layout>
         <div className='container mx-auto'>
@@ -65,19 +67,34 @@ function CheckOut() {
             <div> 
               <div>
                 <div className='products'>
-                <div  className="flex justify-between mb-2 border-2">
+                <div  className="flex flex-col justify-between mb-2 border-2">
+                {items?.map((product, index)=>{
+                                return(
+                                    <div key={index} className="flex justify-between mb-2 border-2">
                                         <div className="w-[30%]">
-                                        <img src={productInfo.image} className="border-2" width={80} />
+                                        <img src={product.image} className="border-2" width={80} />
                                         </div>
                                         <div className="w-[50%]">
-                                            <span>{productInfo.name}</span>
+                                            <span>{product.name}</span>
                                             <br />
-                                            <span>x{productInfo.quantity}</span>
+                                            <span>x{product.quantity}</span>
                                         </div>
                                         <div className="w-[20%]">
-                                        {(Number(productInfo.quantity) * Number(productInfo.price)).toFixed(2)}
+                                        {(Number(product.quantity) * Number(product.price)).toFixed(2)}
                                         </div>
                                     </div>
+                                    )
+                            })}
+
+                                    </div>
+
+                  <div>
+                  <div className="my-4">
+                                <p>Subtotal: {cartTotal}</p> <br />
+                                <p>Shipping Charge: 120</p>
+                                <p>Total: {Number(cartTotal)+Number(120)}</p>
+                            </div>
+                  </div>
 
                 </div>
               </div>

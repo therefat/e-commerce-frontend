@@ -3,6 +3,7 @@ import Layout from '../layout/Layout'
 import { useCart } from 'react-use-cart';
 import {toast} from 'react-toastify'
 import Toaster from '../component/common/Toastar';
+import { Link } from 'react-router-dom';
 
 function Cart() {
   const {
@@ -114,6 +115,7 @@ function Cart() {
                   })}
               </tbody>
             </table>
+            <div className='grid mt-5 items-center'><Link to={'/checkout'} className=" w-48 p-4 bg-slate-700 text-cyan-400 rounded-lg hover:bg-slate-500">Checkout</Link></div>
         </div>
     </Layout>
     </>

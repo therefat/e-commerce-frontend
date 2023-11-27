@@ -49,7 +49,8 @@ function App() {
     <Route path='/:name' element={<ProductInfo/>}></Route>
     <Route path='/signup' element={<SignUp></SignUp>}></Route>
     <Route path='/cart' element={<Cart/>}></Route>
-    <Route path='/checkout/:name' element={<CheckOut></CheckOut>}></Route>
+    <Route path='/checkout' element={<CheckOut/>}></Route>
+    <Route exact path='/checkout/:name' element={<CheckOut></CheckOut>}></Route>
     {/* <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route> */}
       
     
