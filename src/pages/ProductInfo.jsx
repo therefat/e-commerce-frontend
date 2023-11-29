@@ -6,19 +6,25 @@ import axios from "axios";
 function ProductInfo() {
   const { name } = useParams();
   const [productInfo, setProductInfo] = useState([]);
+  const [productPrice,setProductPrice] = useState(0)
+  const [attributeId,setAttributeId] = useState()
 
   useEffect(() => {
     axios
       .get("http://localhost:8080/items/" + name)
       .then((response) => {
         // console.log(response)
-        setProductInfo(response.data);
+        // setProductInfo(response.data);
+        if(response.data.success){
+          setProductInfo(response.data.item)
+          setProductPrice(response.data.item.price)
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  console.log(productInfo);
+  console.log(attributeId);
   return (
     <Layout>
       <div>
@@ -52,7 +58,7 @@ function ProductInfo() {
                       Price:{" "}
                     </span>
                     <span className="text-gray-600 dark:text-gray-300">
-                      {productInfo.price}
+                      {productPrice}
                     </span>
                   </div>
                   <div>
@@ -69,8 +75,17 @@ function ProductInfo() {
                   <span className="font-bold text-gray-700 dark:text-gray-300">
                   Select Quantity:
                   </span>
-                  <div className="flex items-center mt-2">
-                    <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
+                  <div className="flex items-center mt-2 attribute">
+                    {
+                      productInfo.attributes?.map((attribute,index) => {
+                       return (
+                        <button className={` ${attributeId == attribute?._id ? "bg-green-700" : "dark:bg-gray-700 bg-gray-300"}  text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600`} onClick={() => {setProductPrice(attribute.att_price);setAttributeId(attribute._id)}}>
+                        {attribute.att_name} 
+                      </button>
+                       )
+                      })
+                    }
+                    {/* <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
                       200
                     </button>
                     <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
@@ -81,7 +96,7 @@ function ProductInfo() {
                     </button>
                     <button className="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
                       2000
-                    </button>
+                    </button> */}
                     
                   </div>
                 </div>

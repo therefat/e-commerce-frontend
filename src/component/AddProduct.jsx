@@ -15,8 +15,32 @@ function AddProduct() {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImagess] = useState("");
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]); 
+  const [type, setType] = useState('kg');
+  const [words, setWords] = useState([]);
+  const [variations, setVariations] = useState([]);
+  const [values,setValues] = useState('')
+  function handleWord(e) {
+    if (e.key === "Enter") {
+      let temp = words ? words : [];
+      temp.push(value);
+      setWords(temp);
+      setValues("");
+    }
+  }
+  const addVariation = () => {
+    
+    setVariations([...variations, { att_name: '', att_price: 0 }]);
+    console.log(variations)
+  };
 
+  const handleVariationChange = (index, variationType, variationQuantity) => {
+    const updatedVariations = [...variations];
+    updatedVariations[index] = { att_name: variationType, att_price: variationQuantity };
+    setVariations(updatedVariations);
+  };
+
+  console.log(variations)
   const handleAdd = () =>{
     setformBtn('add')
     setShowModal(true)
@@ -68,6 +92,7 @@ function AddProduct() {
           category: category,
           price: price,
           image: image,
+          attributes : variations
         },
         {
           headers: {
@@ -128,7 +153,7 @@ function AddProduct() {
       });
 
   }
-
+console.log(type === 'kg')
 // () => setShowModal(true)
   return (
     <Dashboard>
@@ -222,8 +247,47 @@ function AddProduct() {
               <label htmlFor="proImage">Uplode Image</label>
               <input type="file" id="" onChange={imagSub} />
             </div>
+            <div className="mb-3 flex flex-col gap-1">
+              <label htmlFor="">Qunt</label>
+              <select value={type} onChange={(e) => setType(e.target.value)}>
+          <option value="kg">KG</option>
+          <option value="pieces">Pieces</option>
+        </select>
+        <br /> 
 
-            <button className="bg-gray-900 p-3  text-white rounded">
+        {type === 'kg' && (
+            <div>
+              <h3>Kilogram Variations</h3>
+              {variations.map((variation, index) => (
+                <div key={index} className="mb-3 mr-2">
+                  
+                  <label>{`Kg Variation ${index + 1}: `}</label>
+                  <input
+                    type="text" 
+                    className="border h-8 rounded-lg border-gray-900"
+                    value={variation.att_name}
+                    onChange={(e) => handleVariationChange(index, e.target.value, variation.att_price)}
+                  />
+                  
+                  
+                  <input
+                    type="number"
+                    className="border h-8 rounded-lg border-gray-900"
+                    value={variation.att_price}
+                    onChange={(e) => handleVariationChange(index, variation.att_name, e.target.value)}
+                  />
+                  
+                </div>
+              ))}
+             <p onClick={addVariation} >Add varient</p>
+            </div>
+          )}
+          <br />
+            
+            </div> 
+            
+
+            <button type="submit" className="bg-gray-900 p-3  text-white rounded">
               {formBtn === 'add' ?'Add Product' : "Update"}
             </button>
           </form>
